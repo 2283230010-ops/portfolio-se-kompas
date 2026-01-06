@@ -10,7 +10,7 @@ const halamanAktif = ref('proyek')
 
 // DATA LINK SOSIAL MEDIA - Sudah diperbarui dengan link aslimu
 const sosmed = [
-  { name: "GitHub", icon: "🐙", link: "https://github.com/nurfajrifaiz" },
+  { name: "GitHub", icon: "🐙", link: "https://github.com/2283230010-ops" },
   { name: "LinkedIn", icon: "💼", link: "https://www.linkedin.com/in/nur-fajri-fa-iz-aa60a6288" },
   { name: "Instagram", icon: "📸", link: "https://instagram.com/nrfjrfz" },
   { name: "WhatsApp", icon: "💬", link: "https://wa.me/6281529012005" }
