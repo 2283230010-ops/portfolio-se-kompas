@@ -116,7 +116,6 @@ const openArch = (p) => {
   <div class="main-wrapper">
     <div class="bg-overlay"></div>
     
-    <!-- Header Branding -->
     <header class="logo-nav" role="banner">
       <div class="logo-glass" aria-label="Logo Kompas">
         <img src="/logo-kompas.png" alt="Kompas" class="img-k">
@@ -128,10 +127,8 @@ const openArch = (p) => {
 
     <main class="content-grid">
       
-      <!-- SIDEBAR -->
       <aside class="card-white sidebar">
         <section class="profile-section">
-          <!-- Foto profil bisa diklik untuk buka CV -->
           <div class="avatar-wrapper cursor-pointer group" @click="showCV = true" title="Klik untuk lihat CV">
             <img :src="profil.fotoProfil" alt="Foto Profil" class="avatar-img transition-transform group-hover:scale-105" />
           </div>
@@ -174,7 +171,6 @@ const openArch = (p) => {
         </button>
       </aside>
 
-      <!-- MAIN CONTENT -->
       <section class="card-white main-content">
         <transition name="page-fade" mode="out-in">
           <div :key="halamanAktif">
@@ -228,7 +224,6 @@ const openArch = (p) => {
       </section>
     </main>
 
-    <!-- ARCHITECTURE MODAL -->
     <transition name="modal-fade">
       <div v-if="selectedArch" class="modal-overlay" @click.self="selectedArch = null">
         <div class="modal-container shadow-2xl">
@@ -267,7 +262,6 @@ const openArch = (p) => {
       </div>
     </transition>
 
-    <!-- MODAL CV (Gambar dari public) -->
     <transition name="modal-fade">
       <div v-if="showCV" class="modal-overlay" @click.self="showCV = false">
         <div class="modal-container cv-container shadow-2xl">
@@ -280,7 +274,6 @@ const openArch = (p) => {
             </header>
             
             <div class="cv-wrapper">
-              <!-- Menampilkan gambar CV dari folder public -->
               <img :src="profil.fotoCV" alt="Curriculum Vitae Nur Fajri Fa'iz" class="cv-image" />
             </div>
 
@@ -341,13 +334,57 @@ const openArch = (p) => {
   box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.35);
 }
 
-/* --- Sidebar --- */
+/* --- Sidebar & Profile --- */
+.avatar-wrapper {
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 15px;
+  position: relative;
+}
+
+/* Animasi Timbul Foto Profil */
 .avatar-img { 
-  width: 110px; height: 110px; border-radius: 50%; 
-  border: 4px solid #f8f9fa; object-fit: cover; margin-bottom: 15px;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%; 
+  border: 4px solid #f8f9fa; 
+  object-fit: cover;
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
   display: block;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
 }
+
+/* Efek saat mouse mendekat: Timbul/Membesar & Bayangan lebih dalam */
+.avatar-wrapper:hover .avatar-img {
+  transform: scale(1.15) translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  border-color: #e11d48;
+}
+
+/* Tooltip atau hint visual sederhana agar user tau itu bisa diklik */
+.avatar-wrapper::after {
+  content: '📄 Click for CV';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: #111;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  opacity: 0;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.avatar-wrapper:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 .badge-role {
   background: #fef3c7; color: #92400e; padding: 6px 14px;
   border-radius: 10px; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.5px; display: inline-block;
